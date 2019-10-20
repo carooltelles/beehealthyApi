@@ -63,6 +63,7 @@ public class UserService {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			ObjectNode userJson = (ObjectNode) mapper.readTree(mapper.writeValueAsString(user));
+			String type = userJson.get("type").asText();
 			if(type.equals("patient")) {
 				Nutritionist nutritionist = mapper.convertValue(userJson, Nutritionist.class);
 				return nutritionistRepository.save(nutritionist);
