@@ -3,35 +3,29 @@ package com.usjt.beehealthy.model;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-@Entity @Table(name="patient") @DiscriminatorValue("P")
+@Entity @Table(name="patient")
+@PrimaryKeyJoinColumn(name="iduser")
 public class Patient extends User implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
  
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	public int idPatient;
+//	@GeneratedValue(strategy=GenerationType.IDENTITY)
+//	public Long idpatient;
 	public Double weight;
 	public Double height;
 	public String description;
 	
-	//@OneToOne
-	//@JoinColumn(name="id_user")
-	public User user;
-	
-	public int getIdPatient() {
-		return idPatient;
-	}
-	
-	public void setIdPatient(int idPatient) {
-		this.idPatient = idPatient;
-	}
+//	public Long getIdPatient() {
+//		return idpatient;
+//	}
+//	
+//	public void setIdPatient(Long idpatient) {
+//		this.idpatient = idpatient;
+//	}
 		
 	public Date getBirthday() {
 		return birthday;
@@ -63,13 +57,5 @@ public class Patient extends User implements Serializable{
 	
 	public void setDescription(String description) {
 		this.description = description;
-	}
-	
-	public User getUser() {
-		return user;
-	}
-	
-	public void setUser(User user) {
-		this.user = user;
 	}
 }

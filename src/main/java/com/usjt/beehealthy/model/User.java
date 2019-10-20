@@ -1,6 +1,5 @@
 package com.usjt.beehealthy.model;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -10,57 +9,80 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;;
+import javax.validation.constraints.NotNull;
 
+@Entity
+@Table(name = "user")
+@Inheritance(strategy = InheritanceType.JOINED)
+public class User {
 
-@Entity @Table(name="user") @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-public class User implements Serializable{
-
-	private static final long serialVersionUID = 1L;
-	
-	
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	public int idUser;	
-	@NotNull(message="Email is required.")
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public Long iduser;
+	@NotNull(message = "Email is required.")
 	public String email;
-	@NotNull(message="Password is required.")
+	@NotNull(message = "Password is required.")
 	public String password;
 	@NotNull
 	public String fullname;
 	public Date birthday;
-	@NotNull(message="Type is required.")
+	@NotNull(message = "Type is required.")
 	public String type;
 
-	
-	public int getIdUser() {
-		return idUser;
+	public Long getIduser() {
+		return iduser;
 	}
-	
-	public void setIdUser(int idUser) {
-		this.idUser = idUser;
+
+	public void setIduser(Long iduser) {
+		this.iduser = iduser;
 	}
-	
-	public String getEmail() { 
+
+	public String getEmail() {
 		return email;
 	}
-	
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	public String getPassword() {
 		return password;
 	}
-	
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	public String getType() {
 		return type;
 	}
-	
+
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((iduser == null) ? 0 : iduser.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (iduser == null) {
+			if (other.iduser != null)
+				return false;
+		} else if (!iduser.equals(other.iduser))
+			return false;
+		return true;
 	}
 }
