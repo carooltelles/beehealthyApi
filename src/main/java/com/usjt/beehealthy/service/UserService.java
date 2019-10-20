@@ -64,9 +64,13 @@ public class UserService {
 		try {
 			ObjectNode userJson = (ObjectNode) mapper.readTree(mapper.writeValueAsString(user));
 			String type = userJson.get("type").asText();
-			if(type.equals("patient")) {
+			if(type.equals("nutritionist")) {
 				Nutritionist nutritionist = mapper.convertValue(userJson, Nutritionist.class);
 				return nutritionistRepository.save(nutritionist);
+			}
+			else if(type.equals("patient")) {
+				Patient patient = mapper.convertValue(userJson, Patient.class);
+				return patientRepository.save(patient);
 			}
 		} catch (JsonMappingException e) {
 			e.printStackTrace();
