@@ -13,12 +13,12 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;;
 
 
-@Entity @Table(name="user") @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@Entity @Table(name="user")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	
-	
+		
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	public int idUser;	
 	@NotNull(message="Email is required.")

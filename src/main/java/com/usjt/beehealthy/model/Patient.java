@@ -3,26 +3,25 @@ package com.usjt.beehealthy.model;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
-@Entity @Table(name="patient") @DiscriminatorValue("P")
+@Entity @Table(name="patient")
+@PrimaryKeyJoinColumn(name="idUser")
 public class Patient extends User implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
  
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public int idPatient;
 	public Double weight;
 	public Double height;
 	public String description;
-	
-	//@OneToOne
-	//@JoinColumn(name="id_user")
+	@Transient
 	public User user;
 	
 	public int getIdPatient() {

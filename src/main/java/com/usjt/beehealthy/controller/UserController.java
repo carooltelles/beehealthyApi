@@ -2,7 +2,9 @@ package com.usjt.beehealthy.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.usjt.beehealthy.model.User;
@@ -10,13 +12,13 @@ import com.usjt.beehealthy.service.UserService;
 
 @RestController
 @RequestMapping("user")
-public class AccountController {
+public class UserController {
 	
 	@Autowired
 	UserService userService; 
 	
 	@PostMapping("/register")
-	public User register(User user) {
+	public @ResponseBody Object register(@RequestBody Object user) {
 		try {
 			return userService.register(user);			
 		}catch(Exception e) {
@@ -25,13 +27,9 @@ public class AccountController {
 	}
 	
 	@PostMapping("/login")
-	public User login(User user) {
-		User foundUser = userService.login(user);
-		if (foundUser!= null) {
-			return foundUser;
-		}else {
-			return foundUser;
-		}
+	public @ResponseBody Object login(@RequestBody User user) {
+		Object foundUser = userService.login(user);
+		return foundUser;
 	}
 	
 }	

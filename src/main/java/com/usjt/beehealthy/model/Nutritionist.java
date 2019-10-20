@@ -1,28 +1,28 @@
 package com.usjt.beehealthy.model;
 
 import java.io.Serializable;
-import javax.persistence.DiscriminatorValue;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
-import javax.persistence.Id;
 
-@Entity @Table(name="nutritionist") @DiscriminatorValue("N")
+@Entity @Table(name="nutritionist")
+@PrimaryKeyJoinColumn(name="idUser")
 public class Nutritionist extends User implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public int idNutritionist;
 	@NotNull(message="Specialization is required.")
 	public String specialization;
 	@NotNull(message="CRN is required.")
 	public String crn;
-	
-	//@OneToOne(cascade=CascadeType.ALL)
-	//@JoinColumn(name="id_user")
+	@Transient
 	public User user;
 
 	public int getIdNutritionist() {
