@@ -31,6 +31,7 @@ public class User implements Serializable{
 	@NotNull(message="Type is required.")
 	public String type;
 
+
 	
 	public int getIdUser() {
 		return idUser;

@@ -21,8 +21,6 @@ public class Patient extends User implements Serializable{
 	public Double weight;
 	public Double height;
 	public String description;
-	@Transient
-	public User user;
 	
 	public int getIdPatient() {
 		return idPatient;
@@ -62,13 +60,5 @@ public class Patient extends User implements Serializable{
 	
 	public void setDescription(String description) {
 		this.description = description;
-	}
-	
-	public User getUser() {
-		return user;
-	}
-	
-	public void setUser(User user) {
-		this.user = user;
 	}
 }

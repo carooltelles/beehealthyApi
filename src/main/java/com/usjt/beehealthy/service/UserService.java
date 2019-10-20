@@ -1,7 +1,9 @@
 package com.usjt.beehealthy.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -26,19 +28,34 @@ public class UserService {
 	@Autowired
 	NutritionistRepository nutritionistRepository;
 	
-	public Object login(User user) {
-		User foundUser = userRepository.
-				findByEmailAndPassword(
-						user.getEmail(),user.getPassword());
-		if (foundUser.getType().equals("patient")) {
-			Patient patient = patientRepository.findByidUser(foundUser.getIdUser());
-			patient.setUser(foundUser);
-			return patient;
-		} else if(foundUser.getType().equals("nutritionist")) {
-			Nutritionist nutritionist = nutritionistRepository.findByidUser(foundUser.getIdUser());
-			nutritionist.setUser(foundUser);
-			return nutritionist;
-		}else return user;
+	public Object login(User user) throws UserNotFound {
+		try {
+			User foundUser = userRepository.
+					findByEmailAndPasswordAndType(
+							user.getEmail(),user.getPassword(), user.getType());
+			
+			if (user.getType().equals("patient")) {
+				Patient patient = patientRepository.findByidUser(foundUser.getIdUser());
+				patient.setIdUser(foundUser.getIdUser());
+				patient.setEmail(foundUser.getEmail());
+				patient.setPassword(foundUser.getPassword());
+				return patient;
+				
+			} else if(user.getType().equals("nutritionist")) {
+				Nutritionist nutritionist = nutritionistRepository.findByidUser(foundUser.getIdUser());
+				nutritionist.setIdUser(foundUser.getIdUser());
+				nutritionist.setEmail(foundUser.getEmail());
+				nutritionist.setPassword(foundUser.getPassword());
+				return nutritionist;
+			}
+			return foundUser;
+		}catch(NullPointerException e) {
+			throw new UserNotFound("User not found.");
+		}catch(Exception e) {
+			return e;
+		}
+		
+		
 	}
 	
 	
@@ -46,11 +63,7 @@ public class UserService {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			ObjectNode userJson = (ObjectNode) mapper.readTree(mapper.writeValueAsString(user));
-			String type = userJson.with("user").get("type").asText();
 			if(type.equals("patient")) {
-				Patient patient = mapper.convertValue(userJson, Patient.class);
-				patientRepository.save(patient);
-			}else if(type.equals("nutritionist")) {
 				Nutritionist nutritionist = mapper.convertValue(userJson, Nutritionist.class);
 				return nutritionistRepository.save(nutritionist);
 			}
@@ -60,5 +73,15 @@ public class UserService {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	
+	
+	@ResponseStatus(value=HttpStatus.NOT_FOUND, reason="User not found")
+	public class UserNotFound extends Exception{
+		private static final long serialVersionUID = 5594824708766567753L;
+		public UserNotFound(String message) {
+			super(message);
+		}
 	}
 }

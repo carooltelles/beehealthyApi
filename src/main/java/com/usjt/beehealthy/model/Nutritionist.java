@@ -22,8 +22,6 @@ public class Nutritionist extends User implements Serializable{
 	public String specialization;
 	@NotNull(message="CRN is required.")
 	public String crn;
-	@Transient
-	public User user;
 
 	public int getIdNutritionist() {
 		return idNutritionist;
@@ -47,14 +45,6 @@ public class Nutritionist extends User implements Serializable{
 
 	public void setCrn(String crn) {
 		this.crn = crn;
-	}
-	
-	public User getUser() {
-		return user;
-	}
-	
-	public void setUser(User user) {
-		this.user = user;
 	}
 	
 }
