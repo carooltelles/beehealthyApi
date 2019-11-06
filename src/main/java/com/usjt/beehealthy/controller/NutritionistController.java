@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +31,16 @@ public class NutritionistController {
 	public @ResponseBody List<Nutritionist> findAllNutritionist(){
 		try {
 			return nutritionistService.findAllNutritionist();
+		}catch(Exception e) {
+			throw e;
+		}
+	}
+	
+	@GetMapping("/search")
+	@ResponseStatus(code=HttpStatus.OK)
+	public @ResponseBody List<Nutritionist> findNutritionistByName(@RequestParam("fullname") String fullname){
+		try {
+			return nutritionistService.findNutritionistByName(fullname);
 		}catch(Exception e) {
 			throw e;
 		}

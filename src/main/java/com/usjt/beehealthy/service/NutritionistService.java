@@ -56,4 +56,12 @@ public class NutritionistService {
 			throw e;
 		}
 	}
+
+	public List<Nutritionist> findNutritionistByName(String fullname) {
+		try {
+			return nutritionistRepository.findByFullnameContaining(fullname);
+		}catch(Exception e) {
+			throw e;
+		}
+	}
 }
