@@ -13,20 +13,10 @@ public class Nutritionist extends User implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-//	@GeneratedValue(strategy=GenerationType.IDENTITY)
-//	public Long idnutritionist;
 	@NotNull(message="Specialization is required.")
 	public String specialization;
 	@NotNull(message="CRN is required.")
 	public String crn;
-
-//	public Long getIdNutritionist() {
-//		return idnutritionist;
-//	}
-//
-//	public void setIdNutritionist(Long idnutritionist) {
-//		this.idnutritionist = idnutritionist;
-//	}
 
 	public String getSpecialization() {
 		return specialization;

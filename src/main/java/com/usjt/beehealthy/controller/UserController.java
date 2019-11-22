@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.usjt.beehealthy.model.User;
 import com.usjt.beehealthy.service.UserService;
 import com.usjt.beehealthy.service.UserService.UserNotFound;
@@ -34,6 +35,7 @@ public class UserController {
 	public @ResponseBody Object login(@RequestBody User user) throws UserNotFound {
 		try {
 			return userService.login(user);
+			
 		}catch(Exception e) {
 			throw e;
 		}
