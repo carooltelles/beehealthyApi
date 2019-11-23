@@ -30,6 +30,7 @@ public class ConsultService {
 	@Autowired
 	PatientRepository patientRepository;
 	
+	
 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
 
 	public List<Consult> findAllConsult() {
@@ -108,5 +109,15 @@ public class ConsultService {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public List<Consult> findConsultByIdNutritionistAndType(Long iduser, String type) {
+		List<Consult> consults = consultRepository.findByNutritionistIduserAndNutritionistType(iduser, type);
+		return consults;
+	}
+	
+	public List<Consult> findConsultByIdPatientAndType(Long iduser, String type) {
+		List<Consult> consults = consultRepository.findByPatientIduserAndPatientType(iduser, type);
+		return consults;
 	}
 }

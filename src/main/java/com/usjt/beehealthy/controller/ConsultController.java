@@ -45,6 +45,25 @@ public class ConsultController {
 			throw e;
 		}
 	}
+	
+	@GetMapping("/patient/{iduser}")
+	public @ResponseBody List<Consult> findConsultByPatient(@PathVariable ("iduser") Long iduser) {
+		try {
+			return consultService.findConsultByIdPatientAndType(iduser, "patient");
+		} catch (Exception e) {
+			throw e;
+		}
+	}
+	
+	@GetMapping("/nutritionist/{iduser}")
+	public @ResponseBody List<Consult> findConsultByNutritionist(@PathVariable ("iduser") Long iduser) {
+		try {
+			return consultService.findConsultByIdNutritionistAndType(iduser, "nutritionist");
+		} catch (Exception e) {
+			throw e;
+		}
+	}
+
 
 	@GetMapping("/{idconsult}")
 	@ResponseStatus(code = HttpStatus.OK)
