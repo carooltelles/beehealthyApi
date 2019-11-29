@@ -15,6 +15,15 @@ public class Nutritionist extends User implements Serializable{
 	
 	public String specialization;
 	public String crn;
+	public String address;
+		
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
 	public String getSpecialization() {
 		return specialization;

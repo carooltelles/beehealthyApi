@@ -30,6 +30,9 @@ public class ConsultService {
 	@Autowired
 	PatientRepository patientRepository;
 	
+	@Autowired
+	NutritionistClientService clientService;
+	
 	
 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
 
@@ -94,12 +97,15 @@ public class ConsultService {
 			consulta.setPlace(userJson.get("place").asText());
 			
 			Long idnutritionist = userJson.get("idnutritionist").asLong();
-			Nutritionist n = nutricionistRepository.findByiduser(idnutritionist);
-			consulta.setNutritionist(n);
+			Nutritionist nutritionist = nutricionistRepository.findByiduser(idnutritionist);
+			consulta.setNutritionist(nutritionist);
 			
 			Long idpatient = Long.parseLong(userJson.get("idpatient").asText());
-			Patient p = patientRepository.findByiduser(idpatient);
-			consulta.setPatient(p);
+			Patient patient = patientRepository.findByiduser(idpatient);
+			consulta.setPatient(patient);
+			
+			clientService.createClient(nutritionist, patient);
+			
 			
 			return consultRepository.save(consulta);
 		} catch (JsonMappingException e) {
