@@ -12,4 +12,6 @@ public interface NutritionalPlanRepository extends JpaRepository<NutritionalPlan
 
 	public NutritionalPlan findByidplan(Long idplan);
 
+	public List<NutritionalPlan> findByPatientIduser(Long idpatient);
+
 }

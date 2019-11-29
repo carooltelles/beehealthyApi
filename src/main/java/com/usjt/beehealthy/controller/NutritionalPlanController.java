@@ -38,6 +38,18 @@ public class NutritionalPlanController {
 		}
 	}
 	
+	
+	@GetMapping("/patient/{idpatient}")
+	@ResponseStatus(code=HttpStatus.OK)
+	public @ResponseBody List<NutritionalPlan> findPlanByPatient
+	(@PathVariable("idpatient") Long idpatient){
+		try {
+			return planService.findPlanByPatient(idpatient);
+		}catch(Exception e) {
+			throw e;
+		}
+	}
+	
 	@PostMapping("/")
 	@ResponseStatus(code=HttpStatus.OK)
 	public @ResponseBody NutritionalPlan createPlan (@RequestBody Object planObject) throws Exception {

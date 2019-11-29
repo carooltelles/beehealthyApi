@@ -82,4 +82,13 @@ public class NutritionalPlanService {
 		return updatedPlan;
 		
 	}
+
+	public List<NutritionalPlan> findPlanByPatient(Long idpatient) {
+		try {
+			return planRepository.findByPatientIduser(idpatient);
+		}catch(Exception e) {
+			throw e;
+		}
+		
+	}
 }
