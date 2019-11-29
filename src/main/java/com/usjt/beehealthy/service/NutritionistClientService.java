@@ -34,5 +34,13 @@ public class NutritionistClientService {
 			throw e;
 		}
 	}
+	
+	public List<NutritionistClient> findByNutritionistAndPatient(Long idnutritionist, Long idpatient){
+		try {
+			return clientRepository.findByNutritionistIduserAndPatientIduser(idnutritionist, idpatient);
+		}catch(Exception e) {
+			throw e;
+		}
+	}
 
 }

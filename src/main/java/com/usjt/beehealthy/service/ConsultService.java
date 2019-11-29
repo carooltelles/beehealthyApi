@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.usjt.beehealthy.model.Consult;
 import com.usjt.beehealthy.model.Nutritionist;
+import com.usjt.beehealthy.model.NutritionistClient;
 import com.usjt.beehealthy.model.Patient;
 import com.usjt.beehealthy.repository.ConsultRepository;
 import com.usjt.beehealthy.repository.NutritionistRepository;
@@ -104,8 +105,8 @@ public class ConsultService {
 			Patient patient = patientRepository.findByiduser(idpatient);
 			consulta.setPatient(patient);
 			
-			clientService.createClient(nutritionist, patient);
-			
+			List<NutritionistClient> clients = clientService.findByNutritionistAndPatient(idnutritionist, idpatient);
+			if(clients.size() == 0) clientService.createClient(nutritionist, patient);
 			
 			return consultRepository.save(consulta);
 		} catch (JsonMappingException e) {

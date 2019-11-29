@@ -16,7 +16,7 @@ public interface NutritionistRepository extends JpaRepository<Nutritionist, Long
 
 	public List<Nutritionist> findByFullnameContaining(String fullname);
 	
-	@Query(value="SELECT u.iduser, u.birthday, u.email, u.fullname, n.crn, n.specialization FROM nutritionist n INNER JOIN user u ON n.iduser = u.iduser WHERE u.fullname like '%?1%'",
+	@Query(value="SELECT u.iduser, u.birthday, u.email, u.fullname, n.crn, n.specialization, n.address FROM nutritionist n INNER JOIN user u ON n.iduser = u.iduser WHERE u.fullname like '%?1%'",
 			nativeQuery=true)
 	public List<Nutritionist> selectByName(String fullname);
 }
