@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.usjt.beehealthy.model.Nutritionist;
 import com.usjt.beehealthy.repository.NutritionistRepository;
 import com.usjt.beehealthy.repository.UserRepository;
@@ -33,10 +36,16 @@ public class NutritionistService {
 		}
 	}
 	
-	public Nutritionist updateNutritionist(Long userId, Nutritionist nutritionist) {
+	public Nutritionist updateNutritionist(Long userId, Nutritionist nutritionist) throws Exception {
+		ObjectMapper mapper = new ObjectMapper();
 		try {
+			
+			ObjectNode userJson = (ObjectNode) mapper.readTree(mapper.writeValueAsString(nutritionist));
+			System.out.println(userJson);
 			Nutritionist updatedNutritionist = nutritionistRepository.findByiduser(userId);
 			updatedNutritionist.setCrn(nutritionist.getCrn());
+			updatedNutritionist.setFullname(nutritionist.getFullname());
+			updatedNutritionist.setBirthday(nutritionist.getBirthday());
 			updatedNutritionist.setEmail(nutritionist.getEmail());
 			updatedNutritionist.setPassword(nutritionist.getPassword());
 			updatedNutritionist.setSpecialization(nutritionist.getSpecialization());

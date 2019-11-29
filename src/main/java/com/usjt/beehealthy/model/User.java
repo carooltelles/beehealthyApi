@@ -1,7 +1,5 @@
 package com.usjt.beehealthy.model;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,7 +23,7 @@ public class User {
 	public String password;
 	@NotNull
 	public String fullname;
-	public Date birthday;
+	public String birthday;
 	@NotNull(message = "Type is required.")
 	public String type;
 
@@ -60,6 +58,23 @@ public class User {
 	public void setType(String type) {
 		this.type = type;
 	}
+	
+	public String getBirthday() {
+		return birthday;
+	}
+	
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+	
+	public String getFullname() {
+		return fullname;
+	}
+	
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
+	}
+	
 
 	@Override
 	public int hashCode() {

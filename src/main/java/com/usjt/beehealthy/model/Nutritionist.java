@@ -13,9 +13,7 @@ public class Nutritionist extends User implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	@NotNull(message="Specialization is required.")
 	public String specialization;
-	@NotNull(message="CRN is required.")
 	public String crn;
 
 	public String getSpecialization() {

@@ -77,7 +77,6 @@ public class ConsultService {
 	}
 
 	public void deleteConsult(Long idconsult) {
-		// TODO Auto-generated method stub
 		try {
 			consultRepository.deleteById(idconsult);
 		} catch (Exception e) {

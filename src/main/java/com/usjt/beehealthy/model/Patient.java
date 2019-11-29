@@ -1,7 +1,6 @@
 package com.usjt.beehealthy.model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -12,28 +11,12 @@ import javax.persistence.Table;
 public class Patient extends User implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
- 
-//	@GeneratedValue(strategy=GenerationType.IDENTITY)
-//	public Long idpatient;
+
 	public Double weight;
 	public Double height;
 	public String description;
 	
-//	public Long getIdPatient() {
-//		return idpatient;
-//	}
-//	
-//	public void setIdPatient(Long idpatient) {
-//		this.idpatient = idpatient;
-//	}
-		
-	public Date getBirthday() {
-		return birthday;
-	}
-	
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
-	}
+
 	
 	public Double getWeight() {
 		return weight;

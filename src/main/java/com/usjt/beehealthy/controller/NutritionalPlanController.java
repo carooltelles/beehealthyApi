@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,55 +17,55 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.usjt.beehealthy.model.Patient;
-import com.usjt.beehealthy.service.PatientService;
+import com.usjt.beehealthy.model.NutritionalPlan;
+import com.usjt.beehealthy.service.NutritionalPlanService;
 
 @RestController
-@RequestMapping("patient")
-public class PatientController {
+@RequestMapping("plan")
+public class NutritionalPlanController {
 
 	@Autowired
-	PatientService patientService;
+	NutritionalPlanService planService;
 	
-	@GetMapping("/")
+	@GetMapping("/nutritionist/{idnutritionist}/patient/{idpatient}")
 	@ResponseStatus(code=HttpStatus.OK)
-	public @ResponseBody List<Patient> findAllPatients(){
+	public @ResponseBody List<NutritionalPlan> findPlanByPatientAndNutritionist
+	(@PathVariable("idnutritionist") Long idnutritionist, @PathVariable("idpatient") Long idpatient){
 		try {
-			return patientService.findAllPatients();
+			return planService.findPlanByPatientAndNutritionist(idpatient, idnutritionist);
 		}catch(Exception e) {
 			throw e;
 		}
 	}
 	
-	@GetMapping("/{userId}")
+	@PostMapping("/")
 	@ResponseStatus(code=HttpStatus.OK)
-	public @ResponseBody Patient findPatient(@PathVariable("userId") Long userId) {
+	public @ResponseBody NutritionalPlan createPlan (@RequestBody Object planObject) throws Exception {
 		try {
-			return patientService.findPatient(userId);
+			return planService.createPlan(planObject);
 		}catch(Exception e) {
 			throw e;
 		}
 	}
 	
-	@PutMapping("/{userId}")
 	@Transactional
+	@PutMapping("/{idplan}")
 	@ResponseStatus(code=HttpStatus.OK)
-	public @ResponseBody Patient updatePatient(@PathVariable("userId") Long userId, @RequestBody Patient patient) {
+	public @ResponseBody NutritionalPlan updatePlan
+	(@PathVariable("idplan") Long idplan, @RequestBody NutritionalPlan plan)  throws Exception{
 		try {
-			return patientService.updatePatient(userId, patient);
+			return planService.updatePlan(idplan, plan);
 		}catch(Exception e) {
 			throw e;
 		}
 	}
 	
-	
-	
-	@DeleteMapping("/{userId}")
-	@Transactional
+	@Transactional 
+	@DeleteMapping("/{idplan}")
 	@ResponseStatus(code=HttpStatus.OK)
-	public void deletePatient(@PathVariable("userId") Long userId) {
+	public void deletePlan(@PathVariable("idplan") Long idplan){
 		try {
-			patientService.deletePatient(userId);
+			planService.deletePlan(idplan);
 		}catch(Exception e) {
 			throw e;
 		}

@@ -36,6 +36,7 @@ public class PatientService {
 			Patient updatedPatient =  patientRepository.findByiduser(userId);
 			updatedPatient.setDescription(patient.getDescription());
 			updatedPatient.setEmail(patient.getEmail());
+			updatedPatient.setFullname(patient.getFullname());
 			updatedPatient.setPassword(patient.getPassword());
 			updatedPatient.setHeight(patient.getHeight());
 			updatedPatient.setWeight(patient.getWeight());

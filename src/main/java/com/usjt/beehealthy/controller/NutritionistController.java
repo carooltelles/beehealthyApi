@@ -59,7 +59,7 @@ public class NutritionistController {
 	@PutMapping("/{userId}")
 	@Transactional
 	@ResponseStatus(code=HttpStatus.OK)
-	public @ResponseBody Nutritionist updateNutritionist(@PathVariable("userId") Long userId, @RequestBody Nutritionist nutritionist) {
+	public @ResponseBody Nutritionist updateNutritionist(@PathVariable("userId") Long userId, @RequestBody Nutritionist nutritionist) throws Exception {
 		try {
 			return nutritionistService.updateNutritionist(userId, nutritionist);
 		}catch(Exception e) {
