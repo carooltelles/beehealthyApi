@@ -69,7 +69,7 @@ public class ConsultService {
 			Long idpatient = Long.parseLong(consultJson.get("idpatient").asText());
 			Patient patient = patientRepository.findByiduser(idpatient);
 			
-			updatedConsult.setDate(formatter.parse(consultJson.get("date").asText()));
+			updatedConsult.setDate(consultJson.get("date").asText());
 			updatedConsult.setPlace(consultJson.get("place").asText());
 			updatedConsult.setNutritionist(nutritionist);
 			updatedConsult.setPatient(patient);
@@ -94,7 +94,7 @@ public class ConsultService {
 			ObjectNode userJson = (ObjectNode) mapper.readTree(mapper.writeValueAsString(consult));
 			
 			Consult consulta = new Consult();
-			consulta.setDate(formatter.parse(userJson.get("date").asText()));
+			consulta.setDate(userJson.get("date").asText());
 			consulta.setPlace(userJson.get("place").asText());
 			
 			Long idnutritionist = userJson.get("idnutritionist").asLong();

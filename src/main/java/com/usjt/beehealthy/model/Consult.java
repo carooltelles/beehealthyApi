@@ -1,7 +1,5 @@
 package com.usjt.beehealthy.model;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,8 +21,8 @@ public class Consult {
 	private Long idconsult;
 	@NotNull(message = "Place is required.")
 	private String place;
-	@NotNull(message = "Date is required.")
-	private Date date;
+	@NotNull(message = "String is required.")
+	private String date;
 	@ManyToOne(optional=false)
     @JoinColumn(name = "idnutritionist",nullable=false)
 	private Nutritionist nutritionist;
@@ -48,11 +46,11 @@ public class Consult {
 		this.place = place;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
@@ -74,7 +72,7 @@ public class Consult {
 
 	@Override
 	public String toString() {
-		return "Consult [idconsult=" + idconsult + ", place=" + place + ", date=" + date + ", nutritionist="
+		return "Consult [idconsult=" + idconsult + ", place=" + place + ", String=" + date + ", nutritionist="
 				+ nutritionist + ", patient=" + patient + "]";
 	}
 }
