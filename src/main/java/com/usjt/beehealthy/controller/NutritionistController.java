@@ -56,12 +56,12 @@ public class NutritionistController {
 		}
 	}
 	
-	@PutMapping("/{userId}")
+	@PutMapping("/{iduser}")
 	@Transactional
 	@ResponseStatus(code=HttpStatus.OK)
-	public @ResponseBody Nutritionist updateNutritionist(@PathVariable("userId") Long userId, @RequestBody Nutritionist nutritionist) throws Exception {
+	public @ResponseBody Nutritionist updateNutritionist(@PathVariable("iduser") Long iduser, @RequestBody Nutritionist nutritionist) throws Exception {
 		try {
-			return nutritionistService.updateNutritionist(userId, nutritionist);
+			return nutritionistService.updateNutritionist(iduser, nutritionist);
 		}catch(Exception e) {
 			throw e;
 		}

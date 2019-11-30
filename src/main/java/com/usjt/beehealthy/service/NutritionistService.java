@@ -47,6 +47,7 @@ public class NutritionistService {
 			updatedNutritionist.setFullname(nutritionist.getFullname());
 			updatedNutritionist.setBirthday(nutritionist.getBirthday());
 			updatedNutritionist.setEmail(nutritionist.getEmail());
+			updatedNutritionist.setAddress(nutritionist.getAddress());
 			updatedNutritionist.setPassword(nutritionist.getPassword());
 			updatedNutritionist.setSpecialization(nutritionist.getSpecialization());
 			updatedNutritionist.setType(nutritionist.getType());

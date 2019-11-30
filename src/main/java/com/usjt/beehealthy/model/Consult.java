@@ -21,7 +21,7 @@ public class Consult {
 	private Long idconsult;
 	@NotNull(message = "Place is required.")
 	private String place;
-	@NotNull(message = "String is required.")
+	//@NotNull(message = "date is required.")
 	private String date;
 	@ManyToOne(optional=false)
     @JoinColumn(name = "idnutritionist",nullable=false)
