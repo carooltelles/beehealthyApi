@@ -19,7 +19,7 @@ public class NutritionistClientController {
 	@Autowired
 	NutritionistClientService clientService;
 
-	@GetMapping("/{idnutritionist}")
+	@GetMapping("/nutritionist/{idnutritionist}")
 	public @ResponseBody List<NutritionistClient> findByNutritionist(@PathVariable("idnutritionist") Long idnutritionist){
 		try {
 			return clientService.findByNutritionist(idnutritionist);
