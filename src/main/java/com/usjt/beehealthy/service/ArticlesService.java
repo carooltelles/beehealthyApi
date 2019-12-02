@@ -1,5 +1,7 @@
 package com.usjt.beehealthy.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,20 +22,28 @@ public class ArticlesService {
 	@Autowired
 	NutritionistRepository nutritionistRepository;
 	
-	public Articles createArticle(Object article) {
+	public Articles createArticle(Object articleObject) throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			
-			ObjectNode articleJson = (ObjectNode) mapper.readTree(mapper.writeValueAsString(article));
-			String idnutritionist = articleJson.get("idnutritionist").asText();
-			System.out.println("ID DO NUTRITIONIST"+idnutritionist);
-			Nutritionist nutritionist = nutritionistRepository.findByiduser(Long.parseLong(idnutritionist));
+			ObjectNode articleJson = (ObjectNode) mapper.readTree(mapper.writeValueAsString(articleObject));
+			Long idnutritionist = articleJson.get("nutritionist").asLong();
+			String title = articleJson.get("title").asText();
+			String text = articleJson.get("text").asText();
+			Nutritionist nutritionist = nutritionistRepository.findByiduser(idnutritionist);
+			Articles article = new Articles(title, text, nutritionist);
 			
-			
-			// return articleRepository.save(article);
-			return null;
+			return articleRepository.save(article);
 		}catch(Exception e) {
-			return null;			
+			throw e;			
+		}
+	}
+
+	public List<Articles> allArticles() {
+		try {
+			return articleRepository.findAll();			
+		}catch(Exception e) {
+			throw e;
 		}
 	}
 

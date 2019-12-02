@@ -40,8 +40,8 @@ public class NutritionalPlanService {
 			ObjectMapper mapper = new ObjectMapper();
 			ObjectNode planJson = (ObjectNode) mapper.readTree(mapper.writeValueAsString(planObject));
 			
-			Long idnutritionist = planJson.get("nutritionist").asLong();
-			Long idpatient = planJson.get("patient").asLong();
+			Long idnutritionist = planJson.get("idnutritionist").asLong();
+			Long idpatient = planJson.get("idpatient").asLong();
 			String breakfast = planJson.get("breakfast").asText();
 			String lunch = planJson.get("lunch").asText();
 			String dinner = planJson.get("dinner").asText();

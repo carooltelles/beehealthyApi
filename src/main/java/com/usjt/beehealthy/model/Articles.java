@@ -1,5 +1,6 @@
 package com.usjt.beehealthy.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,10 +16,28 @@ public class Articles {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long idarticle;
 	@ManyToOne(optional=false)
-	@JoinColumn(name = "idnutritionist", nullable=false)
-	public Nutritionist idnutritionist;
+	@JoinColumn(name = "nutritionist", nullable=false)
+	public Nutritionist nutritionist;
 	public String title;
+	@Column(columnDefinition = "LONGTEXT")
 	public String text;
+	
+	public Articles (String title, String text, Nutritionist nutritionist) {
+		this.title = title;
+		this.text = text;
+		this.nutritionist = nutritionist;
+	}
+	
+	public Articles (Long idarticle, String title, String text, Nutritionist nutritionist) {
+		this.idarticle = idarticle;
+		this.title = title;
+		this.text = text;
+		this.nutritionist = nutritionist;
+	}
+	
+	public Articles() {
+		
+	}
 	
 	
 	public Long getIdarticle() {
@@ -27,11 +46,11 @@ public class Articles {
 	public void setIdarticle(Long idarticle) {
 		this.idarticle = idarticle;
 	}
-	public Nutritionist getIdnutritionist() {
-		return idnutritionist;
+	public Nutritionist getnutritionist() {
+		return nutritionist;
 	}
-	public void setIdnutritionist(Nutritionist idnutritionist) {
-		this.idnutritionist = idnutritionist;
+	public void setnutritionist(Nutritionist nutritionist) {
+		this.nutritionist = nutritionist;
 	}
 	public String getTitle() {
 		return title;
