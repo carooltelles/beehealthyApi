@@ -23,7 +23,7 @@ public class User {
 	public String password;
 	@NotNull
 	public String fullname;
-	public String birthday;
+	public String birthday = "";
 	@NotNull(message = "Type is required.")
 	public String type;
 

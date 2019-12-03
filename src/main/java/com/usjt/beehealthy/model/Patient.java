@@ -12,9 +12,9 @@ public class Patient extends User implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
-	public Double weight;
-	public Double height;
-	public String description;
+	public Double weight = (double) 0;
+	public Double height = (double) 0;
+	public String description = "";
 	
 
 	

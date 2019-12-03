@@ -2,6 +2,8 @@ package com.usjt.beehealthy.controller;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +25,17 @@ public class NutritionistClientController {
 	public @ResponseBody List<NutritionistClient> findByNutritionist(@PathVariable("idnutritionist") Long idnutritionist){
 		try {
 			return clientService.findByNutritionist(idnutritionist);
+		}catch(Exception e) {
+			throw e;
+		}
+	}
+	
+	
+	@GetMapping("/nutritionist/client/{idpatient}")
+	@Transactional
+	public @ResponseBody void deleteClient(@PathVariable("idpatient") Long idpatient){
+		try {
+			clientService.deleteClient(idpatient);
 		}catch(Exception e) {
 			throw e;
 		}

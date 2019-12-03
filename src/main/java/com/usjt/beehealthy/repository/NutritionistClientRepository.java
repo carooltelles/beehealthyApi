@@ -10,5 +10,6 @@ public interface NutritionistClientRepository  extends JpaRepository<Nutritionis
 
 	public List<NutritionistClient> findPatientByNutritionistIduser(Long idnutritionist);
 	public List<NutritionistClient> findByNutritionistIduserAndPatientIduser(Long idnutritionist, Long idpatient);
+	public void deleteByPatientIduser(Long iduser);
 
 }

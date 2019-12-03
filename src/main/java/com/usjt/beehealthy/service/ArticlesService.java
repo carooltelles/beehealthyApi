@@ -47,4 +47,13 @@ public class ArticlesService {
 		}
 	}
 
+	public void deleteArticle(Long idarticle) {
+		try {
+			articleRepository.deleteById(idarticle);			
+		}catch(Exception e) {
+			throw e;
+		}
+		
+	}
+
 }

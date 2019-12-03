@@ -43,4 +43,12 @@ public class NutritionistClientService {
 		}
 	}
 
+	public void deleteClient(Long idpatient) {
+		try {
+			clientRepository.deleteByPatientIduser(idpatient);
+		}catch(Exception e) {
+			throw e;
+		}
+	}
+
 }
