@@ -38,10 +38,8 @@ public class NutritionistService {
 	
 	public Nutritionist updateNutritionist(Long userId, Nutritionist nutritionist) throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
-		try {
-			
+
 			ObjectNode userJson = (ObjectNode) mapper.readTree(mapper.writeValueAsString(nutritionist));
-			System.out.println(userJson);
 			Nutritionist updatedNutritionist = nutritionistRepository.findByiduser(userId);
 			updatedNutritionist.setCrn(nutritionist.getCrn());
 			updatedNutritionist.setFullname(nutritionist.getFullname());
@@ -52,10 +50,6 @@ public class NutritionistService {
 			updatedNutritionist.setSpecialization(nutritionist.getSpecialization());
 			updatedNutritionist.setType(nutritionist.getType());
 			return updatedNutritionist;
-
-		}catch(Exception e) {
-			throw e;
-		}
 	}
 	
 	
